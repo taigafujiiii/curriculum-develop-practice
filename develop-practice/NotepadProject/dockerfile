@@ -1,18 +1,26 @@
-# ベースイメージ（JDK 17）
-FROM eclipse-temurin:17-jdk
+# ベースイメージ（Maven + JDK17）
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
 # 作業ディレクトリ
 WORKDIR /app
 
-# Maven Wrapperとソースをコピー
+# プロジェクトファイルをコピー
 COPY . .
 
-# Mavenビルド（テストはスキップ）
-RUN ./mvnw clean package -DskipTests
+# ビルド（テストスキップ）
+RUN mvn clean package -DskipTests
 
-# Render用：ポート指定（Renderは環境変数PORTを使用）
-EXPOSE 8080
+# 実行用ステージ
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+# ビルド済みJARをコピー
+COPY --from=build /app/target/*.jar app.jar
+
+# Render用ポート
 ENV PORT=8080
+EXPOSE 8080
 
 # アプリ起動
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["java", "-jar", "app.jar"]
