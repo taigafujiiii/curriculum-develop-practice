@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>create</title>
+<link rel="stylesheet" href="css/create.css">
+</head>
+<body>
+	<header class="header_contents">
+		<p class="header_text">メモ帳</p>
+	</header>
+	<div class="wrapper">
+		<div class="left_contents">
+			<form method="get" th:action="@{/create}">
+				<button class="newcreat_btn" type="submit">新規作成</button>
+			</form>
+			<div class="menu">
+				<a class="menu_btn" href="/home">一覧</a>
+				<a class="menu_btn" herf="#">ユーザー情報</a>
+			</div> 
+			<p class="copyright">©2024</p>
+		</div>
+		<div class="right_contents">
+			<p class="right_title">新規作成</p>
+			<form method="post" th:action="@{/add}">
+				<label class="input_label">タイトル</label>
+				<input class="input_title" type="text" name="title" />
+				<label class="input_label">本文</label>
+				<textarea class="input_body" name="content"></textarea>
+				<label class="input_label">カテゴリー</label>
+				<select class="select_category" name="categoryId">
+					<option value="" selected>カテゴリーを選択</option>
+					<option 
+						th:each="c : ${categories}" 
+						th:value="${c.id}"
+						th:text="${c.name}"></option>
+				</select>
+				<button class="creat_btn" type="submit">追加</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

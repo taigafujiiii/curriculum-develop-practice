@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+	<title>home</title>
+	<link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+	<header class="header_contents">
+		<p class="header_text">メモ帳</p>
+	</header>
+	<div class="wrapper">
+		<div class="left_contents">
+			<form method="get" th:action="@{/create}">
+				<button class="newcreat_btn" type="submit">新規作成</button>
+			</form>
+			<div class="menu">
+				<a class="menu_btn" href="/home">一覧</a>
+				<a class="menu_btn" herf="#">ユーザー情報</a>
+			</div> 
+			<p class="copyright">©2024</p>
+		</div>
+		<div class="right_contents">
+			<p class="right_title">一覧</p>
+			<div class="memo" th:each="note : ${notes}" th:object="${note}">
+				<form method="get" th:action="@{/show}">
+					<input type="hidden" name="id" th:value="*{id}" />
+					<button class="memo_show" type="submit">
+						<div class="memo_ditail">
+							<span class="memo_title" th:text="*{title}"></span>
+							<span class="memo_body" th:text="*{content}"></span>	
+						</div>
+						<div class="memo_info">
+							<div class="creat_time">
+								<span th:text="*{createdAt}"></span>
+							</div>
+							<div class="memo_category">
+								<span th:if="*{category != null}" th:text="*{category.name}"></span>
+								<span th:unless="*{category != null}">未分類</span>
+							</div>
+						</div>
+					</button>
+				</form>				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

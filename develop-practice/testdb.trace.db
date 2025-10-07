@@ -1,0 +1,8 @@
+2025-10-07 20:13:57.465382+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: 列 "CONTENT CHARACTER VARYING(255)" の値が長過ぎます: "U&'\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\3... (640)"
+Value too long for column "CONTENT CHARACTER VARYING(255)": "U&'\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\3... (640)"; SQL statement:
+insert into notes (category_id,content,created_at,title,updated_at,user_id,id) values (?,?,?,?,?,?,default) [22001-232]
+2025-10-07 20:19:50.503435+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: 列 "CONTENT CHARACTER VARYING(255)" の値が長過ぎます: "U&'\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\3... (312)"
+Value too long for column "CONTENT CHARACTER VARYING(255)": "U&'\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\30c8\\30c6\\30ad\\30b9\\3... (312)"; SQL statement:
+insert into notes (category_id,content,created_at,title,updated_at,user_id,id) values (?,?,?,?,?,?,default) [22001-232]

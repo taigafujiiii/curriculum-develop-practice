@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Notepad App</title>
+	<link rel="stylesheet" href="css/registration.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script src="javascript/registration.js"></script>
+</head>
+<body>
+	<header class="header_contents">
+		<p class="header_text">メモ帳</p>
+	</header>
+	<div class="wrapper">
+		<div class="registration">
+			<p class="registration_text">アカウント登録</p>
+			<form method="post" th:action="@{/addUser}">
+				<p class="registration_label">氏名</p>
+				<input class="input_text" id="input_name" type="text" name="name" required/>
+				<p class="registration_label">メールアドレス</p>
+				<input class="input_text" id="input_email" type="text" name="email" required/>
+				<p class="registration_label">パスワード</p>
+				<input class="input_text" id="input_password" type="text" name="password" required/>
+				<p class="registration_label">パスワード確認用</p> 
+				<input class="input_text" id="input_password_confirmation" type="text" name="password_confirmation" 	required/>
+				<button class="new_registration" id="submit_btn" type="submit">新規登録</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>show</title>
+<link rel="stylesheet" href="css/show.css">
+</head>
+<body>
+	<header class="header_contents">
+		<p class="header_text">メモ帳</p>
+	</header>
+	<div class="wrapper">
+		<div class="left_contents">
+			<form method="get" th:action="@{/create}">
+				<button class="newcreat_btn" type="submit">新規作成</button>
+			</form>
+			<div class="menu">
+				<a class="menu_btn" href="/home">一覧</a>
+				<a class="menu_btn" herf="#">ユーザー情報</a>
+			</div> 
+			<p class="copyright">©2024</p>
+		</div>
+		<div class="right_contents" th:each="note : ${notes}" th:object="${note}">
+			<p class="memo_title" th:text="*{title}"></p>
+			<form method="get" th:action="@{/edit}">
+				<input type="hidden" name="id" th:value="*{id}" />
+				<div th:if="${note.user.name == userName}">
+					<button class="edit_btn" type="submit">編集</button>
+				</div>	
+			</form>
+			<div class="memo_overview">
+				<p class="user_name" th:text="*{user.name}"></p>
+				<p class="memo_category">
+					<span th:if="*{category != null}" th:text="*{category.name}"></span>
+					<span th:unless="*{category != null}">未分類</span>
+				</p>
+				<p class="creat_time" th:text="*{createdAt}"></p>	
+			</div>
+			<textarea readonly class="memo_body" th:text="*{content}"></textarea>
+			<form method="post" th:action="@{/delete}">
+				<input type="hidden" name="id" th:value="*{id}" />
+				<input type="hidden" name="_method" value="delete" />
+				<div th:if="${note.user.name == userName}">
+					<button class="delete_btn" type="submit">このメモを削除する</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
