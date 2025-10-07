@@ -1,26 +1,27 @@
-# ベースイメージ（Maven + JDK17）
+# ===== ビルドステージ =====
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 
-# 作業ディレクトリ
-WORKDIR /app
+# 作業ディレクトリをプロジェクトの正しい場所に変更
+WORKDIR /app/NotepadProject
 
-# プロジェクトファイルをコピー
-COPY . .
+# 必要なファイルをコピー
+COPY NotepadProject/pom.xml .
+COPY NotepadProject/src ./src
 
 # ビルド（テストスキップ）
 RUN mvn clean package -DskipTests
 
-# 実行用ステージ
+# ===== 実行ステージ =====
 FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-# ビルド済みJARをコピー
-COPY --from=build /app/target/*.jar app.jar
+# 上で作ったJARをコピー
+COPY --from=build /app/NotepadProject/target/*.jar app.jar
 
-# Render用ポート
+# Render 用ポート設定
 ENV PORT=8080
 EXPOSE 8080
 
-# アプリ起動
+# Spring Boot アプリを起動
 CMD ["java", "-jar", "app.jar"]
