@@ -4,10 +4,15 @@ FROM eclipse-temurin:17-jdk
 # 作業ディレクトリ
 WORKDIR /app
 
-# Maven Wrapperをコピーしてビルド
+# Maven Wrapperとソースをコピー
 COPY . .
 
+# Mavenビルド（テストはスキップ）
 RUN ./mvnw clean package -DskipTests
+
+# Render用：ポート指定（Renderは環境変数PORTを使用）
+EXPOSE 8080
+ENV PORT=8080
 
 # アプリ起動
 CMD ["java", "-jar", "target/*.jar"]
