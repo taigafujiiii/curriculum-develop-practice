@@ -1,0 +1,13 @@
+# ベースイメージ（JDK 17）
+FROM eclipse-temurin:17-jdk
+
+# 作業ディレクトリ
+WORKDIR /app
+
+# Maven Wrapperをコピーしてビルド
+COPY . .
+
+RUN ./mvnw clean package -DskipTests
+
+# アプリ起動
+CMD ["java", "-jar", "target/*.jar"]
