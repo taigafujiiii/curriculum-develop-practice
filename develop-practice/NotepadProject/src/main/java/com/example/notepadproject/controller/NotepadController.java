@@ -31,6 +31,12 @@ public class NotepadController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	// ルートURL（/）にアクセスされたらログインページへリダイレクト
+	@GetMapping("/")
+	public String redirectToLogin() {
+			return "redirect:/login";
+	}
+
 	@GetMapping("/registration")
 	public String getRegistration() {
 		return "registration";
