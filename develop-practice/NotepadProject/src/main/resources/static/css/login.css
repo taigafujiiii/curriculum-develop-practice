@@ -23,7 +23,7 @@
 
 .login {
 	width: 600px;
-	height: 310px;
+	min-height: 310px;
 	padding-left: 20px;
 	padding-right: 20px;
 	background-color: #ffffff;
@@ -62,4 +62,21 @@
 	border: 1px solid #000000;
 	border-radius: 50px;
 	background-color: #ffffff;
+}
+
+.registration_link {
+	margin-top: 16px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 21px;
+}
+
+.registration_link a {
+	color: #0056b3;
+	text-decoration: none;
+}
+
+.registration_link a:hover,
+.registration_link a:focus {
+	text-decoration: underline;
 }
