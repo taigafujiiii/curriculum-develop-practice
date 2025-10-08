@@ -34,7 +34,7 @@ public class NotepadController {
 	// ルートURL（/）にアクセスされたらログインページへリダイレクト
 	@GetMapping("/")
 	public String redirectToLogin() {
-			return "redirect:/login";
+			return "redirect:/registration";
 	}
 
 	@GetMapping("/registration")

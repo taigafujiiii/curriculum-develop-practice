@@ -23,7 +23,7 @@
 
 .registration {
 	width: 600px;
-	height: 467px;
+	height: 510px;
 	padding-left: 20px;
 	padding-right: 20px;
 	background-color: #ffffff;
@@ -43,6 +43,14 @@
 	font-weight: 700;
 	font-size: 16px;
 	line-height: 24px;
+}
+
+.password_requirements {
+	margin-top: 0;
+	margin-bottom: 8px;
+	font-size: 14px;
+	line-height: 21px;
+	color: #555555;
 }
 
 .input_text {
